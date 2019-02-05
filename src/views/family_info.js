@@ -15,20 +15,28 @@ FamilyInfo.prototype.bindEvents = function() {
 FamilyInfo.prototype.render = function(family) {
   this.container.innerHTML = '';
 
+  const familyInfo = document.createElement('div');
+  familyInfo.classList.add('family-info');
+  this.container.appendChild(familyInfo);
+
+  const instrumentInfo = document.createElement('div');
+  instrumentInfo.classList.add('instrument-info');
+  this.container.appendChild(instrumentInfo);
+
   const familyName = document.createElement('h1');
   familyName.textContent = family.name;
-  this.container.appendChild(familyName);
+  familyInfo.appendChild(familyName);
 
   const familyDescription = document.createElement('p');
   familyDescription.textContent = family.description;
-  this.container.appendChild(familyDescription);
+  familyInfo.appendChild(familyDescription);
 
   const familyListTitle = document.createElement('h2');
   familyListTitle.textContent = "Instruments include:";
-  this.container.appendChild(familyListTitle);
+  instrumentInfo.appendChild(familyListTitle);
 
   const familyInstrumentList = this.instrumentList(family.instruments);
-  this.container.appendChild(familyInstrumentList);
+  instrumentInfo.appendChild(familyInstrumentList);
 }
 
 FamilyInfo.prototype.instrumentList = function(instruments) {
